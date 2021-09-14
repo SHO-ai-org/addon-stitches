@@ -1,26 +1,53 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./button.css";
+import { styled } from "../stitches.config";
+
+const ButtonStyled = styled("div", {
+  fontFamily: '"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontWeight: 700,
+  border: 0,
+  borderRadius: "3em",
+  cursor: "pointer",
+  display: "inline-block",
+  lineHeight: "1",
+  variants: {
+    primary: {
+      true: {
+        color: "$gs1",
+        backgroundColor: "$pri",
+      },
+      false: {
+        color: "$gs6",
+        backgroundColor: "$none",
+        boxShadow: "$gs6 0px 0px 0px 1px inset",
+      },
+    },
+    size: {
+      small: {
+        fontSize: "12px",
+        padding: "10px 16px",
+      },
+      medium: {
+        fontSize: "14px",
+        padding: "11px 20px",
+      },
+      large: {
+        fontSize: "16px",
+        padding: "12px 24px",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "small",
+    variant: "primary",
+  },
+});
 
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
-  return (
-    <button
-      type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
-      )}
-      style={backgroundColor && { backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
-  );
+export const Button = ({ label, ...props }) => {
+  return <ButtonStyled {...props}>{label}</ButtonStyled>;
 };
 
 Button.propTypes = {
