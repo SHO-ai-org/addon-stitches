@@ -1632,10 +1632,10 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@stitches/react@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.1.0.tgz#49342e085528d689b983682e112b79c5a0b0efb4"
-  integrity sha512-g1XZsmB3tFL5i9aaBx0+P4C83j3vf/PEmLc5e9PlumE5c6q3zsdbbOVr4ZC52eGm4MCvM+2bbAJ++rtTUa6ahw==
+"@stitches/react@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.0.tgz#cdb69256d76bcb4753417d59bc42da21fd603ba1"
+  integrity sha512-GuMh610X3oJB2pdywARg1jccjAEvrDbq4iwy1SernR/4o1FX5SOTJZIjC4CquagZQjL00KFV8Cwfq/12FS6aBg==
 
 "@storybook/addon-actions@6.3.8":
   version "6.3.8"

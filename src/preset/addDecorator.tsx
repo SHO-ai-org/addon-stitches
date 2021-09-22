@@ -1,3 +1,4 @@
+import { withBackground } from "../decorators.ts/withBackground";
 /**
  * A decorator is a way to wrap a story in extra “rendering” functionality. Many addons define decorators
  * in order to augment stories:
@@ -8,7 +9,5 @@
  *
  * https://storybook.js.org/docs/react/writing-stories/decorators#gatsby-focus-wrapper
  */
-import { withGlobals } from "../withGlobals";
-import { withRoundTrip } from "../withRoundTrip";
 
-export const decorators = [withGlobals, withRoundTrip];
+export const decorators = [withBackground];
