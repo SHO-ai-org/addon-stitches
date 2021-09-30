@@ -430,7 +430,7 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
 
 export type CSS = Stitches.CSS<typeof config>
 
-export const globalStyles = mediaArray =>
+export const globalStyles = (mediaArray: any) =>
   globalCss({
     '@font-face': mediaArray,
     ':root': {
@@ -447,3 +447,30 @@ export const globalStyles = mediaArray =>
       backgroundColor: '$gs2',
     },
   })
+
+
+export const darkTheme = createTheme('dark-theme', {
+  colors: {
+    none: 'transparent',
+    pri: 'red', // primary (ali)
+    pri_75: 'rgba(65,164,141,0.75)', // pirmary with opacity 0.75
+    pri_50: 'rgba(65,164,141,0.5)', // pirmary with opacity 0.50
+    pri_25: 'rgba(65,164,141,0.25)', // pirmary with opacity 0.25
+    pri_L: 'rgba(157, 195, 100, 1)', // light version
+    pri_D: 'rgba(53, 101, 136, 1)', // dark version
+    sec: 'rgba(39, 81, 101, 1)', // secondary (ben)
+  }
+});
+
+export const lightTheme = createTheme('light-theme', {
+  colors: {
+    none: 'transparent',
+    pri: 'green', // primary (ali)
+    pri_75: 'rgba(65,164,141,0.75)', // pirmary with opacity 0.75
+    pri_50: 'rgba(65,164,141,0.5)', // pirmary with opacity 0.50
+    pri_25: 'rgba(65,164,141,0.25)', // pirmary with opacity 0.25
+    pri_L: 'rgba(157, 195, 100, 1)', // light version
+    pri_D: 'rgba(53, 101, 136, 1)', // dark version
+    sec: 'rgba(39, 81, 101, 1)', // secondary (ben)
+  }
+});
