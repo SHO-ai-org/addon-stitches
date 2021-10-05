@@ -459,7 +459,24 @@ export const darkTheme = createTheme('dark-theme', {
     pri_L: 'rgba(157, 195, 100, 1)', // light version
     pri_D: 'rgba(53, 101, 136, 1)', // dark version
     sec: 'rgba(39, 81, 101, 1)', // secondary (ben)
-  }
+  },
+  fontSizes: {
+    // 1rem = 10px
+    h1: '6rem',
+    h2: '4.8rem',
+    h3: '4.3rem',
+    h4: '3.6rem',
+    h5: '3.2rem',
+    h6: '3.0rem',
+    subtitle1: '3.4rem',
+    subtitle2: '2.4rem',
+    body1: '2.7rem',
+    body2: '2.5rem',
+    button: '2.6rem',
+    caption: '2.2rem',
+    overline: '2.3rem',
+    blockquote: '2.7rem',
+  },
 });
 
 export const lightTheme = createTheme('light-theme', {

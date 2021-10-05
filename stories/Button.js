@@ -24,15 +24,15 @@ const ButtonStyled = styled("div", {
     },
     size: {
       small: {
-        fontSize: "12px",
+        fontSize: "$body2",
         padding: "10px 16px",
       },
       medium: {
-        fontSize: "14px",
+        fontSize: "$body1",
         padding: "11px 20px",
       },
       large: {
-        fontSize: "16px",
+        fontSize: "$subtitle2",
         padding: "12px 24px",
       },
     },

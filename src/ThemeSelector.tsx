@@ -7,7 +7,7 @@ import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/comp
 import { document } from 'global';
 import { PARAM_KEY as THEMES_PARAM_KEY, THEME_KEY } from './constants';
 
-import { ThemeSelectorItem, Theme, ThemesParameter, GlobalThemeState, ThemeObject } from './types';
+import { ThemeSelectorItem, Theme, ThemesParameter, GlobalThemeState } from './types';
 import { getThemeObjectByName } from './helpers';
 
 const iframeId = 'storybook-preview-iframe';

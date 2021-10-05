@@ -12,7 +12,6 @@ export default {
           name: 'Theme 01', 
           theme: {
             className: darkTheme.className,
-            colors: darkTheme.colors,
             selector: darkTheme.selector,
           }
         },
@@ -20,7 +19,6 @@ export default {
           name: 'Theme 02', 
           theme: {
             className: lightTheme.className,
-            colors: lightTheme.colors,
             selector: lightTheme.selector,
           }
         },
