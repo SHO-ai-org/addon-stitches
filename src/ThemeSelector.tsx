@@ -71,9 +71,10 @@ const DEFAULT_THEMES_CONFIG: ThemesParameter = {
 
 export const ThemeSelector: FunctionComponent = memo(() => {
   const themesConfig = useParameter<ThemesParameter>(
-    THEMES_PARAM_KEY,
+    'myAddonParameter',
     DEFAULT_THEMES_CONFIG
   );
+  console.log(themesConfig);
   const [globals, updateGlobals] = useGlobals();
 
   const globalsThemeColor = globals[THEME_KEY]?.value;

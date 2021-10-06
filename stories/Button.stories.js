@@ -5,26 +5,7 @@ import { darkTheme, lightTheme } from "../stitches.config";
 export default {
   title: "Example/Button",
   component: Button,
-  parameters: {
-    myAddonParameter: {
-      values: [
-        { 
-          name: 'Theme 01', 
-          theme: {
-            className: darkTheme.className,
-            selector: darkTheme.selector,
-          }
-        },
-        { 
-          name: 'Theme 02', 
-          theme: {
-            className: lightTheme.className,
-            selector: lightTheme.selector,
-          }
-        },
-      ]
-    },
-  }
+
 };
 
 const Template = (args) => <Button {...args} />;
