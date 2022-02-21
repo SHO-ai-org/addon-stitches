@@ -1,4 +1,5 @@
 import { createStitches, defaultThemeMap } from '@stitches/react'
+
 import type * as Stitches from '@stitches/react'
 
 const themeVariables = {
@@ -453,12 +454,12 @@ export const darkTheme = createTheme('dark-theme', {
   colors: {
     none: 'transparent',
     pri: 'red', // primary (ali)
-    pri_75: 'rgba(65,164,141,0.75)', // pirmary with opacity 0.75
-    pri_50: 'rgba(65,164,141,0.5)', // pirmary with opacity 0.50
-    pri_25: 'rgba(65,164,141,0.25)', // pirmary with opacity 0.25
-    pri_L: 'rgba(157, 195, 100, 1)', // light version
-    pri_D: 'rgba(53, 101, 136, 1)', // dark version
-    sec: 'rgba(39, 81, 101, 1)', // secondary (ben)
+    pri_75: 'rgba(165,164,141,0.75)', // pirmary with opacity 0.75
+    pri_50: 'rgba(165,164,141,0.5)', // pirmary with opacity 0.50
+    pri_25: 'rgba(165,164,141,0.25)', // pirmary with opacity 0.25
+    pri_L: 'rgba(57, 195, 100, 1)', // light version
+    pri_D: 'rgba(3, 101, 136, 1)', // dark version
+    sec: 'rgba(9, 81, 101, 1)', // secondary (ben)
   },
   fontSizes: {
     // 1rem = 10px

@@ -7,11 +7,8 @@
         "style",
         "test"
     ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/storybookjs/storybook-addon-kit"
-    },
-    "author": "winkerVSbecks",
+    "repository": "git://github.com/SHO-ai-org/addon-stitches.git",
+    "author": "SHO.ai",
     "license": "MIT",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -82,11 +79,9 @@
         "access": "public"
     },
     "storybook": {
-        "displayName": "Addon Kit",
+        "displayName": "Stitches Theme Selector",
         "supportedFrameworks": [
-            "react",
-            "vue",
-            "angular"
+            "react"
         ],
         "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
     },
