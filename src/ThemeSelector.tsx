@@ -157,7 +157,7 @@ export const ThemeSelector: FunctionComponent = memo(() => {
           title="Change the theme of the preview"
           active={selectedTheme !== null}
         >
-          <Icons icon="beaker" />
+          <Icons icon="paintbrush" />
         </IconButton>
       </WithTooltip>
     </Fragment>
