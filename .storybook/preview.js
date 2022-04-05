@@ -1,21 +1,15 @@
-import { lightTheme, darkTheme } from './../stitches.config';
+import { darkTheme, lightTheme } from './../stitches.config';
 
 export const parameters = {
-    myAddonParameter: {
+  multipleThemesStitches: {
         values: [
           { 
             name: 'Light', 
-            theme: {
-              className: lightTheme.className,
-              selector: lightTheme.selector,
-            }
+            theme: lightTheme
           },
           { 
             name: 'Dark', 
-            theme: {
-              className: darkTheme.className,
-              selector: darkTheme.selector,
-            }
+            theme: darkTheme
           }
         ]
     },

@@ -1,30 +1,13 @@
-import React, {
-  FunctionComponent,
-  Fragment,
-  useCallback,
-  useMemo,
-  memo,
-} from "react";
-import memoize from "memoizerific";
-
-import { useParameter, useGlobals } from "@storybook/api";
+import { useGlobals, useParameter } from "@storybook/api";
 import { logger } from "@storybook/client-logger";
-import {
-  Icons,
-  IconButton,
-  WithTooltip,
-  TooltipLinkList,
-} from "@storybook/components";
+import { Button, IconButton, Icons, TooltipLinkList, WithTooltip } from "@storybook/components";
 import { document } from "global";
-import { PARAM_KEY, THEME_KEY } from "./constants";
+import memoize from "memoizerific";
+import React, { Fragment, FunctionComponent, memo, useCallback, useMemo } from "react";
 
-import {
-  ThemeSelectorItem,
-  Theme,
-  ThemesParameter,
-  GlobalThemeState,
-} from "./types";
+import { PARAM_KEY, THEME_KEY } from "./constants";
 import { getThemeObjectByName } from "./helpers";
+import { GlobalThemeState, Theme, ThemeSelectorItem, ThemesParameter } from "./types";
 
 const iframeId = "storybook-preview-iframe";
 
@@ -60,9 +43,11 @@ const getDisplayedItems = memoize(10)(
     );
 
     if (themes.length) {
+      const _themes = themes.map((x)=>({ name:x.name, theme: { className: x.theme.className, selector: x.theme.selector } }))
+      
       themeSelectorItems = [
         ...themeSelectorItems,
-        ...themes.map(({ name, theme }) =>
+        ..._themes.map(({ name, theme }) =>
           createThemeSelectorItem(
             null,
             name,
@@ -71,7 +56,7 @@ const getDisplayedItems = memoize(10)(
             change,
             name === selected?.name
           )
-        ),
+        )
       ];
     }
 
@@ -115,7 +100,6 @@ export const ThemeSelector: FunctionComponent = memo(() => {
       updateGlobals({
         [THEME_KEY]: selected ? { ...globals[THEME_KEY], value } : {},
       });
-
       let targetEl: HTMLElement;
       const iframe = document.getElementById(iframeId);
 
