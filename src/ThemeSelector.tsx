@@ -1,6 +1,6 @@
 import { useGlobals, useParameter } from "@storybook/api";
 import { logger } from "@storybook/client-logger";
-import { Button, IconButton, Icons, TooltipLinkList, WithTooltip } from "@storybook/components";
+import { IconButton, Icons, TooltipLinkList, WithTooltip } from "@storybook/components";
 import { document } from "global";
 import memoize from "memoizerific";
 import React, { Fragment, FunctionComponent, memo, useCallback, useMemo } from "react";
@@ -76,7 +76,7 @@ export const ThemeSelector: FunctionComponent = memo(() => {
     PARAM_KEY,
     DEFAULT_THEMES_CONFIG
   );
-  console.log(themesConfig);
+
   const [globals, updateGlobals] = useGlobals();
 
   const globalsThemeColor = globals[THEME_KEY]?.value;

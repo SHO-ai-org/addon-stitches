@@ -1,59 +1,80 @@
 # Stitches Theme Selector
 
-Change the stitches config for your Storybook with a theme switcher.
+A storybook addon that allows your users to change the theme inside the preview.
 
-### Development scripts
+![theme-selector](https://user-images.githubusercontent.com/15915214/136265555-441cdc75-1cc7-4cb4-89d3-6382faced3cd.gif)
 
-- `yarn start` runs babel in watch mode and starts Storybook
-- `yarn build` build and package your addon code
+### Installation
 
-### Setup
-
-This project is configured to use [auto](https://github.com/intuit/auto) for release management. It generates a changelog and pushes it to both GitHub and npm. Therefore, you need to configure access to both:
-
-- [`NPM_TOKEN`](https://docs.npmjs.com/creating-and-viewing-access-tokens#creating-access-tokens) Create a token with both _Read and Publish_ permissions.
-- [`GH_TOKEN`](https://github.com/settings/tokens) Create a token with the `repo` scope.
-
-Then open your `package.json` and edit the following fields:
-
-- `name`
-- `author`
-- `repository`
-
-#### Local
-
-To use `auto` locally create a `.env` file at the root of your project and add your tokens to it:
-
+Install the following npm module:
 ```bash
-GH_TOKEN=<value you just got from GitHub>
-NPM_TOKEN=<value you just got from npm>
+npm install multiple-themes-stitches
 ```
-
-Lastly, **create labels on GitHub**. You’ll use these labels in the future when making changes to the package.
-
+or with yarn:
 ```bash
-npx auto create-labels
+yarn add -D multiple-themes-stitches
 ```
 
-If you check on GitHub, you’ll now see a set of labels that `auto` would like you to use. Use these to tag future pull requests.
+### Configuration
 
-#### GitHub Actions
-
-This template comes with GitHub actions already set up to publish your addon anytime someone pushes to your repository.
-
-Go to `Settings > Secrets`, click `New repository secret`, and add your `NPM_TOKEN`.
-
-### Creating a releasing
-
-To create a release locally you can run the following command, otherwise the GitHub action will make the release for you.
-
-```sh
-yarn release
+##### Step 1: Add the addon
+Add the following content to .storybook/main.js.
+```bash
+module.exports = {
+  addons: ['multiple-themes-stitches']
+};
 ```
 
-That will:
+##### Step 2: Add the Themes
+Import your stitches Themes to .storybook/preview.js.
+```bash
+import { LightTheme, DarkTheme, CustomTheme } from '../src/stitches.config'
+```
+Then pass the Stitches Themes to the addon via the exported parameters.
+```bash
+export const parameters = {
+  multipleThemesStitches: {
+    values: [
+      { 
+        name: 'Light', 
+        theme: LightTheme
+      },
+      { 
+        name: 'Dark', 
+        theme: DarkTheme
+      },
+      { 
+        name: 'Custom', 
+        theme: CustomTheme
+      }
+    ]
+  },
+}
+```
 
-- Build and package the addon code
-- Bump the version
-- Push a release to GitHub and npm
-- Push a changelog to GitHub
+#### Contributors ✨
+Thanks go to these wonderful people
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/MichaelDM">
+        <img src="https://avatars.githubusercontent.com/u/12537128?v=4" width="80px;" alt="" />
+        <br />
+        <sub>
+          <b>Michael Machiah</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Noah-Lc">
+        <img src="https://avatars.githubusercontent.com/u/15915214?v=4" width="80px;" alt="" />
+        <br />
+        <sub>
+          <b>Noah Belahcen</b>
+        </sub>
+      </a>
+    </td>  
+  </tr>
+</table>
+
+Made with ☕
