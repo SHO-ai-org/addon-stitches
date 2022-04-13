@@ -1,6 +1,6 @@
 {
     "name": "multiple-themes-stitches",
-    "version": "0.0.2",
+    "version": "0.0.7",
     "description": "An addon that allows to see a same Story using different Stitches theme variables.",
     "keywords": [
         "storybook-addons",
@@ -37,25 +37,25 @@
         "eject-ts": "zx scripts/eject-typescript.mjs"
     },
     "devDependencies": {
-        "@babel/cli": "^7.12.1",
-        "@babel/core": "^7.12.3",
-        "@babel/preset-env": "^7.12.1",
-        "@babel/preset-react": "^7.12.5",
-        "@babel/preset-typescript": "^7.13.0",
-        "@storybook/addon-essentials": "^6.3.6",
-        "@storybook/react": "^6.3.6",
-        "auto": "^10.3.0",
-        "babel-loader": "^8.1.0",
+        "@babel/cli": "^7.17.6",
+        "@babel/core": "^7.17.9",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-react": "^7.16.7",
+        "@babel/preset-typescript": "^7.16.7",
+        "@storybook/addon-essentials": "^6.4.20",
+        "@storybook/react": "^6.4.20",
+        "auto": "^10.36.5",
+        "babel-loader": "^8.2.4",
         "boxen": "^5.0.1",
-        "concurrently": "^6.2.0",
+        "concurrently": "^7.1.0",
         "dedent": "^0.7.0",
-        "prettier": "^2.3.1",
-        "prop-types": "^15.7.2",
+        "prettier": "^2.6.2",
+        "prop-types": "^15.8.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "rimraf": "^3.0.2",
-        "typescript": "^4.2.4",
-        "zx": "^1.14.1"
+        "typescript": "^4.6.3",
+        "zx": "^6.0.7"
     },
     "peerDependencies": {
         "@stitches/react": "^1.1.0",
@@ -86,7 +86,7 @@
         "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
     },
     "dependencies": {
-        "@stitches/react": "^1.2.0",
+        "@stitches/react": "^1.2.7",
         "@storybook/csf": "^0.0.1"
     }
 }
