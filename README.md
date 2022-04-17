@@ -2,7 +2,7 @@
 
 A storybook addon that allows your users to change the theme inside the preview.
 
-![theme-selector](https://user-images.githubusercontent.com/15915214/136265555-441cdc75-1cc7-4cb4-89d3-6382faced3cd.gif)
+![theme-selector](https://user-images.githubusercontent.com/15915214/163733365-04145f35-6c0b-4565-ab32-bcc0545c7405.gif)
 
 ### Installation
 
@@ -26,9 +26,34 @@ module.exports = {
 ```
 
 ##### Step 2: Add the Themes
-Import your stitches Themes to .storybook/preview.js.
+Add your themes to your ```stitches.config.ts```
 ```bash
-import { LightTheme, DarkTheme, CustomTheme } from '../src/stitches.config'
+const { createTheme } = createStitches({...});
+
+const darkTheme = createTheme({
+  colors: {
+    primary: 'rgba(250,55,90,1)',
+    secondary: 'rgba(65,125,165,1)',
+  },
+});
+
+const lightTheme = createTheme({
+  colors: {
+    primary: 'rgba(65,125,165,1)',
+    secondary: 'rgba(245,55,90,1)',
+  },
+});
+
+const customTheme = createTheme({
+  colors: {
+    primary: 'rgba(245,100,5,1)',
+    secondary: 'rgba(65,125,165,1)',
+  },
+});
+```
+And import your stitches Themes to .storybook/preview.js.
+```bash
+import { lightTheme, darkTheme, customTheme } from '../src/stitches.config'
 ```
 Then pass the Stitches Themes to the addon via the exported parameters.
 ```bash
@@ -37,15 +62,15 @@ export const parameters = {
     values: [
       { 
         name: 'Light', 
-        theme: LightTheme
+        theme: lightTheme
       },
       { 
         name: 'Dark', 
-        theme: DarkTheme
+        theme: darkTheme
       },
       { 
         name: 'Custom', 
-        theme: CustomTheme
+        theme: customTheme
       }
     ]
   },
