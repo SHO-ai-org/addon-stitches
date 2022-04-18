@@ -12,6 +12,20 @@
 
 ---
 
+# v0.0.8 (Mon Apr 18 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Update README.md (norvegat147@gmail.com)
+- Merge branch 'main' of https://github.com/SHO-ai-org/addon-stitches (norvegat147@gmail.com)
+- Update the README.md (norvegat147@gmail.com)
+
+#### Authors: 1
+
+- Noah lc (norvegat147@gmail.com)
+
+---
+
 # v0.0.3 (Thu Apr 07 2022)
 
 #### ⚠️ Pushed to `main`
