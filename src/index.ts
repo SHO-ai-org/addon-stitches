@@ -1,1 +1,1 @@
-export {} from './types/index';
+export type {ThemesParameter} from './types/index';

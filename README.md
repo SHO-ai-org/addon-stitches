@@ -2,7 +2,7 @@
 
 A storybook addon that allows your users to change the theme inside the preview.
 
-![theme-selector](https://user-images.githubusercontent.com/15915214/163733365-04145f35-6c0b-4565-ab32-bcc0545c7405.gif)
+![theme-selector](screen.gif)
 
 ### Installation
 
@@ -18,16 +18,21 @@ yarn add -D multiple-themes-stitches
 ### Configuration
 
 ##### Step 1: Add the addon
-Add the following content to .storybook/main.js.
-```bash
-module.exports = {
-  addons: ['multiple-themes-stitches']
+Add the addon to the config in your .storybook/main.ts file
+```js
+const config: StorybookConfig = {
+  // other config ...
+  addons: [
+    "multiple-themes-stitches",
+    // other addons
+  ],
 };
+export default config;
 ```
 
 ##### Step 2: Add the Themes
 Add your themes to your ```stitches.config.ts```
-```bash
+```js
 const { createTheme } = createStitches({...});
 
 const darkTheme = createTheme({
@@ -51,30 +56,32 @@ const customTheme = createTheme({
   },
 });
 ```
-And import your stitches Themes to .storybook/preview.js.
-```bash
-import { lightTheme, darkTheme, customTheme } from '../src/stitches.config'
-```
-Then pass the Stitches Themes to the addon via the exported parameters.
-```bash
-export const parameters = {
-  multipleThemesStitches: {
-    values: [
-      { 
-        name: 'Light', 
-        theme: lightTheme
-      },
-      { 
-        name: 'Dark', 
-        theme: darkTheme
-      },
-      { 
-        name: 'Custom', 
-        theme: customTheme
-      }
-    ]
-  },
+And import your stitches Themes to .storybook/preview.ts and then pass the Stitches Themes to the addon via the parameters property
+```js
+import { Preview } from '@storybook/react';
+import { darkTheme, lightTheme } from "../stitches.config";
+import { ThemesParameter } from "multiple-theme-stitches";
+
+const multipleThemesStitches: ThemesParameter = {
+  values: [
+    {
+      name: "Light",
+      theme: lightTheme,
+    },
+    {
+      name: "Dark",
+      theme: darkTheme,
+    },
+  ],
 }
+const preview: Preview = {
+  parameters: {
+    multipleThemesStitches,
+    // other parameters
+  },
+};
+
+export default preview;
 ```
 
 #### Contributors ✨
@@ -96,6 +103,15 @@ Thanks go to these wonderful people
         <br />
         <sub>
           <b>Noah Belahcen</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/mathisobadia">
+        <img src="https://avatars.githubusercontent.com/u/12857725?v=4" width="80px;" alt="" />
+        <br />
+        <sub>
+          <b>Mathis Obadia</b>
         </sub>
       </a>
     </td>  

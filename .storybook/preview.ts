@@ -1,7 +1,7 @@
 import { Preview } from '@storybook/react';
 
 import { darkTheme, lightTheme } from "../stitches.config";
-import { ThemesParameter } from "../src/types/index";
+import { ThemesParameter } from "../src";
 
 const multipleThemesStitches: ThemesParameter = {
   values: [
