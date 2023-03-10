@@ -1,17 +1,14 @@
-import { ReactElement } from 'react';
-
 export interface GlobalThemeState {
   name: string | undefined;
-  selected: object | undefined;
+  selected: unknown | undefined;
 }
 
 export interface ThemeSelectorItem {
   id: string;
   title: string;
   onClick: () => void;
-  value: object;
+  value: unknown;
   active: boolean;
-  right?: ReactElement;
 }
 
 export interface Theme {
@@ -20,20 +17,15 @@ export interface Theme {
 }
 
 export interface ThemesParameter {
-  default?: string;
   disable?: boolean;
   values: Theme[];
 }
 
 export interface ThemesConfig {
   Themes: Theme[] | null;
-  selectedThemeName: string | null;
-  defaultThemeName: string | null;
   disable: boolean;
 }
 
 export interface ThemeObject {
   className: string,
-  selector: string,
-  colors: object
 }

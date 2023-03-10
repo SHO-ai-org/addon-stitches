@@ -56,10 +56,6 @@ Button.propTypes = {
    */
   primary: PropTypes.bool,
   /**
-   * What background color to use
-   */
-  backgroundColor: PropTypes.string,
-  /**
    * How large should the button be?
    */
   size: PropTypes.oneOf(["small", "medium", "large"]),
@@ -74,7 +70,6 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  backgroundColor: null,
   primary: false,
   size: "medium",
   onClick: undefined,
