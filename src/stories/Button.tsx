@@ -28,10 +28,16 @@ const ButtonStyled = styled("div", {
   }
 });
 
+type ButtonProps = {
+  label: string;
+  primary?: boolean;
+  onClick?: () => void;
+};
+
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ label, ...props }) => {
+export const Button = ({ label, ...props }: ButtonProps) => {
   return <ButtonStyled {...props}>{label}</ButtonStyled>;
 };
 

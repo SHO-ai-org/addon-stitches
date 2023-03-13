@@ -8,8 +8,14 @@
  *
  * https://storybook.js.org/docs/react/writing-stories/decorators#gatsby-focus-wrapper
  */
-import { THEME_NAME_KEY } from "../constants";
+import type { Renderer, ProjectAnnotations } from "@storybook/types";
+import { THEME_NAME_KEY } from "./constants";
 
-export const globals = {
-  [THEME_NAME_KEY]: false,
+const preview: ProjectAnnotations<Renderer> = {
+  decorators: [],
+  globals: {
+    [THEME_NAME_KEY]: false,
+  },
 };
+
+export default preview;

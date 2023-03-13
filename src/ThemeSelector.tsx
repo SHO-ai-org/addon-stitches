@@ -1,4 +1,4 @@
-import { useGlobals, useParameter } from "@storybook/api";
+import { useGlobals, useParameter } from "@storybook/manager-api";
 import {
   IconButton,
   Icons,
@@ -6,7 +6,6 @@ import {
   WithTooltip,
 } from "@storybook/components";
 import React, { FC, Fragment, memo, useCallback, useMemo } from "react";
-
 import { PARAM_KEY, THEME_NAME_KEY } from "./constants";
 import {
   GlobalThemeState,
