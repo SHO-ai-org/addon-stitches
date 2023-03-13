@@ -1,3 +1,20 @@
+# v1.0.0 (Mon Mar 13 2023)
+
+#### 💥 Breaking Change
+
+- fix ci step install dependency [#4](https://github.com/SHO-ai-org/addon-stitches/pull/4) ([@mathisobadia](https://github.com/mathisobadia))
+- setup auto to publish from ci [#3](https://github.com/SHO-ai-org/addon-stitches/pull/3) ([@mathisobadia](https://github.com/mathisobadia))
+
+#### 🐛 Bug Fix
+
+- upgrade to storybook 7 beta, clean up all the code and types [#2](https://github.com/SHO-ai-org/addon-stitches/pull/2) ([@mathisobadia](https://github.com/mathisobadia))
+
+#### Authors: 1
+
+- mathis obadia ([@mathisobadia](https://github.com/mathisobadia))
+
+---
+
 # v0.0.11 (Mon Mar 13 2023)
 
 #### ⚠️ Pushed to `main`
