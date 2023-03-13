@@ -1,92 +1,114 @@
 {
-    "name": "multiple-themes-stitches",
-    "version": "0.0.10",
-    "description": "An addon that allows to see a same Story using different Stitches theme variables.",
-    "keywords": [
-        "storybook-addons",
-        "style",
-        "test"
-    ],
-    "repository": "git://github.com/SHO-ai-org/addon-stitches.git",
-    "author": "SHO.ai",
-    "license": "MIT",
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "types": "dist/ts/index.d.ts",
-    "files": [
-        "dist/**/*",
-        "README.md",
-        "*.js",
-        "*.d.ts"
-    ],
-    "scripts": {
-        "clean": "rimraf ./dist",
-        "buildBabel": "concurrently \"yarn buildBabel:cjs\" \"yarn buildBabel:esm\"",
-        "buildBabel:cjs": "babel ./src -d ./dist/cjs --extensions \".js,.jsx,.ts,.tsx\"",
-        "buildBabel:esm": "babel ./src -d ./dist/esm --env-name esm --extensions \".js,.jsx,.ts,.tsx\"",
-        "buildTsc": "tsc --declaration --emitDeclarationOnly --outDir ./dist/ts",
-        "prebuild": "yarn clean",
-        "build": "concurrently \"yarn buildBabel\" \"yarn buildTsc\"",
-        "build:watch": "concurrently \"yarn buildBabel:esm -- --watch\" \"yarn buildTsc -- --watch\"",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "storybook": "start-storybook -p 6006",
-        "start": "concurrently \"yarn build:watch\" \"yarn storybook -- --no-manager-cache --quiet\"",
-        "build-storybook": "build-storybook",
-        "prerelease": "zx scripts/prepublish-checks.mjs",
-        "release": "yarn build && auto shipit",
-        "eject-ts": "zx scripts/eject-typescript.mjs"
+  "name": "multiple-themes-stitches",
+  "version": "0.0.10",
+  "description": "An addon that allows to see a same Story using different Stitches theme variables.",
+  "keywords": [
+    "storybook-addons",
+    "stitches"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SHO-ai-org/addon-stitches.git"
+  },
+  "author": "SHO.ai <hello@sho.ai>",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     },
-    "devDependencies": {
-        "@babel/cli": "^7.17.6",
-        "@babel/core": "^7.17.9",
-        "@babel/preset-env": "^7.16.11",
-        "@babel/preset-react": "^7.16.7",
-        "@babel/preset-typescript": "^7.16.7",
-        "@storybook/addon-essentials": "^6.4.20",
-        "@storybook/react": "^6.4.20",
-        "auto": "^10.36.5",
-        "babel-loader": "^8.2.4",
-        "boxen": "^5.0.1",
-        "concurrently": "^7.1.0",
-        "dedent": "^0.7.0",
-        "prettier": "^2.6.2",
-        "prop-types": "^15.8.1",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
-        "rimraf": "^3.0.2",
-        "typescript": "^4.6.3",
-        "zx": "^6.0.7"
+    "./manager.js": {
+      "require": "./dist/manager.js",
+      "import": "./dist/manager.mjs",
+      "types": "./dist/manager.d.ts"
     },
-    "peerDependencies": {
-        "@stitches/react": "^1.1.0",
-        "@storybook/addons": "^6.3.6",
-        "@storybook/api": "^6.3.6",
-        "@storybook/components": "^6.3.6",
-        "@storybook/core-events": "^6.3.6",
-        "@storybook/theming": "^6.3.6",
-        "react": "^16.8.0 || ^17.0.0",
-        "react-dom": "^16.8.0 || ^17.0.0"
+    "./preview.js": {
+      "require": "./dist/preview.js",
+      "import": "./dist/preview.mjs",
+      "types": "./dist/preview.d.ts"
     },
-    "peerDependenciesMeta": {
-        "react": {
-            "optional": true
-        },
-        "react-dom": {
-            "optional": true
-        }
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "*.js",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "prebuild": "yarn clean",
+    "build": "tsup",
+    "build:watch": "yarn build --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"yarn build:watch\" \"yarn storybook --quiet\"",
+    "prerelease": "zx scripts/prepublish-checks.mjs",
+    "release": "yarn build && auto shipit",
+    "eject-ts": "zx scripts/eject-typescript.mjs",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@stitches/react": "^1.2.8",
+    "@storybook/addon-essentials": "^7.0.0-rc.1",
+    "@storybook/addon-interactions": "^7.0.0-rc.1",
+    "@storybook/addon-links": "^7.0.0-rc.1",
+    "@storybook/react": "^7.0.0-rc.1",
+    "@storybook/react-vite": "^7.0.0-rc.1",
+    "@storybook/testing-library": "^0.0.14-next.1",
+    "@types/node": "^18.15.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "auto": "^10.3.0",
+    "boxen": "^5.0.1",
+    "concurrently": "^6.2.0",
+    "dedent": "^0.7.0",
+    "prettier": "^2.3.1",
+    "prompts": "^2.4.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "rimraf": "^3.0.2",
+    "storybook": "^7.0.0-rc.1",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "zx": "^1.14.1"
+  },
+  "peerDependencies": {
+    "@stitches/react": "^1.2.8",
+    "@storybook/blocks": "^7.0.0-rc.1",
+    "@storybook/components": "^7.0.0-rc.1",
+    "@storybook/core-events": "^7.0.0-rc.1",
+    "@storybook/manager-api": "^7.0.0-rc.1",
+    "@storybook/preview-api": "^7.0.0-rc.1",
+    "@storybook/theming": "^7.0.0-rc.1",
+    "@storybook/types": "^7.0.0-rc.1",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
     },
-    "publishConfig": {
-        "access": "public"
-    },
-    "storybook": {
-        "displayName": "Stitches Theme Selector",
-        "supportedFrameworks": [
-            "react"
-        ],
-        "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
-    },
-    "dependencies": {
-        "@stitches/react": "^1.2.7",
-        "@storybook/csf": "^0.0.1"
+    "react-dom": {
+      "optional": true
     }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "storybook": {
+    "displayName": "Stitches Theme Selector",
+    "supportedFrameworks": [
+      "react"
+    ],
+    "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
+  },
+  "volta": {
+    "node": "16.19.1"
+  }
 }

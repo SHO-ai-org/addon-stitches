@@ -1,107 +1,99 @@
-import { useGlobals, useParameter } from "@storybook/api";
-import { logger } from "@storybook/client-logger";
-import { IconButton, Icons, TooltipLinkList, WithTooltip } from "@storybook/components";
-import { document } from "global";
-import memoize from "memoizerific";
-import React, { Fragment, FunctionComponent, memo, useCallback, useMemo } from "react";
-
-import { PARAM_KEY, THEME_KEY } from "./constants";
-import { getThemeObjectByName } from "./helpers";
-import { GlobalThemeState, Theme, ThemeSelectorItem, ThemesParameter } from "./types";
+import { useGlobals, useParameter } from "@storybook/manager-api";
+import {
+  IconButton,
+  Icons,
+  TooltipLinkList,
+  WithTooltip,
+} from "@storybook/components";
+import React, { FC, Fragment, memo, useCallback, useMemo } from "react";
+import { PARAM_KEY, THEME_NAME_KEY } from "./constants";
+import {
+  GlobalThemeState,
+  Theme,
+  ThemeSelectorItem,
+  ThemesParameter,
+} from "./types";
 
 const iframeId = "storybook-preview-iframe";
 
-const createThemeSelectorItem = memoize(1000)(
-  (
-    id: string,
-    name: string,
-    value: object,
-    hasSwatch: boolean,
-    change: (arg: { selected: object; name: string }) => void,
-    active: boolean
-  ): ThemeSelectorItem => ({
-    id: id || name,
-    title: name,
-    onClick: () => {
-      change({ selected: value, name });
-    },
-    value,
-    active,
-  })
-);
+const createThemeSelectorItem = (
+  name: string,
+  value: unknown,
+  change: (arg: { selected: unknown; name: string }) => void,
+  active: boolean
+): ThemeSelectorItem => ({
+  id: name,
+  title: name,
+  onClick: () => {
+    change({ selected: value, name });
+  },
+  value,
+  active,
+});
 
-const getDisplayedItems = memoize(10)(
-  (
-    themes: Theme[],
-    selected: Theme,
-    change: (arg: { selected: Theme; name: string }) => void
-  ) => {
-    let themeSelectorItems: ThemeSelectorItem[] = [];
-
-    themeSelectorItems.push(
-      createThemeSelectorItem(null, "Clear theme", null, null, change, false)
-    );
-
-    if (themes.length) {
-      const _themes = themes.map((x)=>({ name:x.name, theme: { className: x.theme.className, selector: x.theme.selector } }))
-      
-      themeSelectorItems = [
-        ...themeSelectorItems,
-        ..._themes.map(({ name, theme }) =>
-          createThemeSelectorItem(
-            null,
-            name,
-            theme,
-            true,
-            change,
-            name === selected?.name
-          )
-        )
-      ];
-    }
-
-    return themeSelectorItems;
-  }
-);
-
-// TDOD: suppot the defqult option
 const DEFAULT_THEMES_CONFIG: ThemesParameter = {
-  default: null,
   disable: true,
   values: [],
 };
 
-export const ThemeSelector: FunctionComponent = memo(() => {
+const getThemeObjectByName = (currentSelectedName: string, themes: Theme[]) => {
+  const currentTheme = themes.find(
+    (theme) => theme.name === currentSelectedName
+  );
+  if (currentTheme) {
+    return currentTheme;
+  }
+  return null;
+};
+
+// TODO: add support for default theme
+export const ThemeSelector: FC = memo(() => {
   const themesConfig = useParameter<ThemesParameter>(
     PARAM_KEY,
     DEFAULT_THEMES_CONFIG
   );
-
+  const themes = themesConfig.values;
   const [globals, updateGlobals] = useGlobals();
 
-  const globalsThemeColor = globals[THEME_KEY]?.value;
+  const globalsThemeName: string = globals[THEME_NAME_KEY];
 
   const selectedTheme = useMemo(() => {
-    return getThemeObjectByName(
-      globalsThemeColor,
-      themesConfig.values,
-      themesConfig.default
-    );
-  }, [themesConfig, globalsThemeColor]);
+    return getThemeObjectByName(globalsThemeName, themes);
+  }, [globalsThemeName]);
 
-  if (Array.isArray(themesConfig)) {
-    logger.warn(
-      "Addon Themes api has changed in Storybook 6.0. Please refer to the migration guide: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md"
+  const change = ({ name, selected }: GlobalThemeState) => {
+    onThemeChange(name, selected);
+  };
+  
+  const themeSelectorItems: ThemeSelectorItem[] = [
+    createThemeSelectorItem("Clear theme", null, change, false),
+  ];
+
+  if (themes.length) {
+    const _themes = themes.map((x) => ({
+      name: x.name,
+      theme: { className: x.theme.className },
+    }));
+
+    themeSelectorItems.push(
+      ..._themes.map(({ name, theme }) =>
+        createThemeSelectorItem(
+          name,
+          theme,
+          change,
+          name === selectedTheme?.name
+        )
+      )
     );
   }
 
   const onThemeChange = useCallback(
-    (value: string, selected: any) => {
+    (name: string, selected: any) => {
       updateGlobals({
-        [THEME_KEY]: selected ? { ...globals[THEME_KEY], value } : {},
+        [THEME_NAME_KEY]: selected ? name : null,
       });
       let targetEl: HTMLElement;
-      const iframe = document.getElementById(iframeId);
+      const iframe = document.getElementById(iframeId) as any;
 
       if (iframe) {
         const iframeDocument =
@@ -130,27 +122,13 @@ export const ThemeSelector: FunctionComponent = memo(() => {
   if (themesConfig.disable) {
     return null;
   }
-
   return (
     <Fragment>
       <WithTooltip
         placement="top"
         trigger="click"
-        closeOnClick
-        tooltip={({ onHide }) => {
-          return (
-            <TooltipLinkList
-              links={getDisplayedItems(
-                themesConfig.values,
-                selectedTheme,
-                ({ name, selected }: GlobalThemeState) => {
-                  onThemeChange(name, selected);
-                  onHide();
-                }
-              )}
-            />
-          );
-        }}
+        closeOnOutsideClick
+        tooltip={<TooltipLinkList links={themeSelectorItems} />}
       >
         <IconButton
           key="theme"
