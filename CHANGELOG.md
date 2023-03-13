@@ -1,3 +1,15 @@
+# v0.0.11 (Mon Mar 13 2023)
+
+#### 🐛 Bug Fix
+
+- upgrade to storybook 7 beta, clean up all the code and types [#2](https://github.com/SHO-ai-org/addon-stitches/pull/2) ([@mathisobadia](https://github.com/mathisobadia))
+
+#### Authors: 1
+
+- mathis obadia ([@mathisobadia](https://github.com/mathisobadia))
+
+---
+
 # v0.0.8 (Mon Apr 18 2022)
 
 #### ⚠️ Pushed to `main`
