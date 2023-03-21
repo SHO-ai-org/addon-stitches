@@ -1,3 +1,16 @@
+# v1.0.1 (Tue Mar 21 2023)
+
+#### 🐛 Bug Fix
+
+- fix: addon is not registered [#6](https://github.com/SHO-ai-org/addon-stitches/pull/6) ([@mathisobadia](https://github.com/mathisobadia))
+- upgrade github actions to node 16 version [#5](https://github.com/SHO-ai-org/addon-stitches/pull/5) ([@mathisobadia](https://github.com/mathisobadia))
+
+#### Authors: 1
+
+- mathis obadia ([@mathisobadia](https://github.com/mathisobadia))
+
+---
+
 # v1.0.0 (Mon Mar 13 2023)
 
 #### 💥 Breaking Change
