@@ -1,3 +1,15 @@
+# v1.0.2 (Thu Mar 23 2023)
+
+#### 🐛 Bug Fix
+
+- feat: add default theme name parameter to addon config [#8](https://github.com/SHO-ai-org/addon-stitches/pull/8) ([@mathisobadia](https://github.com/mathisobadia))
+
+#### Authors: 1
+
+- mathis obadia ([@mathisobadia](https://github.com/mathisobadia))
+
+---
+
 # v1.0.1 (Tue Mar 21 2023)
 
 #### 🐛 Bug Fix
