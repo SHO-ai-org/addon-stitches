@@ -1,6 +1,6 @@
 import { Preview } from '@storybook/react';
 import { darkTheme, lightTheme } from "../src/stitches.config";
-import { ThemesParameter } from "../src";
+import { ThemesParameter } from "../dist";
 
 const multipleThemesStitches: ThemesParameter = {
   values: [
@@ -13,6 +13,7 @@ const multipleThemesStitches: ThemesParameter = {
       theme: darkTheme,
     },
   ],
+  default: "Light",
 }
 const preview: Preview = {
   parameters: {

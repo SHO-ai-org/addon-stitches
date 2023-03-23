@@ -73,6 +73,8 @@ const multipleThemesStitches: ThemesParameter = {
       theme: darkTheme,
     },
   ],
+  // optionally add the default theme name
+  default: "Light"
 }
 const preview: Preview = {
   parameters: {
