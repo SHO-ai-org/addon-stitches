@@ -10,6 +10,7 @@ import { PARAM_KEY, THEME_NAME_KEY } from "./constants";
 import {
   GlobalThemeState,
   Theme,
+  ThemeObject,
   ThemeSelectorItem,
   ThemesParameter,
 } from "./types";
@@ -18,8 +19,8 @@ const iframeId = "storybook-preview-iframe";
 
 const createThemeSelectorItem = (
   name: string,
-  value: unknown,
-  change: (arg: { selected: unknown; name: string }) => void,
+  value: ThemeObject | undefined | null,
+  change: (arg: { selected: ThemeObject | undefined | null; name: string | undefined | null }) => void,
   active: boolean
 ): ThemeSelectorItem => ({
   id: name,
@@ -36,12 +37,30 @@ const DEFAULT_THEMES_CONFIG: ThemesParameter = {
   values: [],
 };
 
-const getThemeObjectByName = (currentSelectedName: string, themes: Theme[]) => {
-  const currentTheme = themes.find(
-    (theme) => theme.name === currentSelectedName
-  );
-  if (currentTheme) {
-    return currentTheme;
+const getThemeObjectByName = (
+  currentSelectedName: string | undefined | null,
+  themes: Theme[],
+  defaultThemeName: string | undefined
+) => {
+  if (currentSelectedName === null) {
+    return null;
+  }
+
+  if (currentSelectedName) {
+    const currentTheme = themes.find(
+      (theme) => theme.name === currentSelectedName
+    );
+    if (currentTheme) {
+      return currentTheme;
+    }
+  }
+  if (defaultThemeName) {
+    const defaultTheme = themes.find(
+      (theme) => theme.name === defaultThemeName
+    );
+    if (defaultTheme) {
+      return defaultTheme;
+    }
   }
   return null;
 };
@@ -53,18 +72,18 @@ export const ThemeSelector: FC = memo(() => {
     DEFAULT_THEMES_CONFIG
   );
   const themes = themesConfig.values;
+  const defaultTheme = themesConfig.default;
   const [globals, updateGlobals] = useGlobals();
 
   const globalsThemeName: string = globals[THEME_NAME_KEY];
 
   const selectedTheme = useMemo(() => {
-    return getThemeObjectByName(globalsThemeName, themes);
-  }, [globalsThemeName]);
-
+    return getThemeObjectByName(globalsThemeName, themes, defaultTheme);
+  }, [globalsThemeName, defaultTheme, themes]);
   const change = ({ name, selected }: GlobalThemeState) => {
     onThemeChange(name, selected);
   };
-  
+
   const themeSelectorItems: ThemeSelectorItem[] = [
     createThemeSelectorItem("Clear theme", null, change, false),
   ];
@@ -87,34 +106,37 @@ export const ThemeSelector: FC = memo(() => {
     );
   }
 
+  const changeTheme = (selected: ThemeObject | undefined | null) => {
+    let targetEl: HTMLElement;
+    const iframe = document.getElementById(iframeId) as any;
+
+    if (iframe) {
+      const iframeDocument =
+        iframe.contentDocument || iframe.contentWindow.document;
+
+      targetEl = iframeDocument.body;
+
+      // Remove all theme class(es).
+      themesConfig.values
+        .filter((theme) => theme.theme)
+        .forEach((current) => {
+          if (current?.theme?.className) {
+            targetEl.classList.remove(current.theme.className);
+          }
+        });
+
+      if (selected) {
+        // Add selected theme class(es).
+        targetEl.className = selected.className;
+      }
+    }
+  }
+
   const onThemeChange = useCallback(
-    (name: string, selected: any) => {
+    (name: string | null | undefined, selected: ThemeObject | undefined | null) => {
       updateGlobals({
         [THEME_NAME_KEY]: selected ? name : null,
       });
-      let targetEl: HTMLElement;
-      const iframe = document.getElementById(iframeId) as any;
-
-      if (iframe) {
-        const iframeDocument =
-          iframe.contentDocument || iframe.contentWindow.document;
-
-        targetEl = iframeDocument.body;
-
-        // Remove all theme class(es).
-        themesConfig.values
-          .filter((theme) => theme.theme)
-          .forEach((current) => {
-            if (current?.theme?.className) {
-              targetEl.classList.remove(current.theme.className);
-            }
-          });
-
-        if (selected) {
-          // Add selected theme class(es).
-          targetEl.className = selected.className;
-        }
-      }
     },
     [themesConfig, globals, updateGlobals]
   );
@@ -122,6 +144,7 @@ export const ThemeSelector: FC = memo(() => {
   if (themesConfig.disable) {
     return null;
   }
+  changeTheme(selectedTheme?.theme);
   return (
     <Fragment>
       <WithTooltip
