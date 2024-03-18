@@ -86,6 +86,13 @@ const preview: Preview = {
 export default preview;
 ```
 
+#### Storybook Version
+Here are the storybook versions that correspond to each version of the multiple-themes-stitches package:
+0.0.0 => storybook < 7
+1.0.0 => storybook version 7.0.0
+2.0.0 => storybook version 8.0.0
+
+
 #### Contributors ✨
 Thanks go to these wonderful people
 <table>
