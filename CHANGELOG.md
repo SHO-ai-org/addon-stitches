@@ -1,3 +1,22 @@
+# v1.0.3 (Mon Mar 18 2024)
+
+#### 🐛 Bug Fix
+
+- remove prerelease checks [#13](https://github.com/SHO-ai-org/addon-stitches/pull/13) ([@mathisobadia](https://github.com/mathisobadia))
+- upgrade github actions [#12](https://github.com/SHO-ai-org/addon-stitches/pull/12) ([@mathisobadia](https://github.com/mathisobadia))
+- upgrade to storybook 8 [#11](https://github.com/SHO-ai-org/addon-stitches/pull/11) ([@mathisobadia](https://github.com/mathisobadia))
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/SHO-ai-org/addon-stitches ([@MichaelDM](https://github.com/MichaelDM))
+
+#### Authors: 2
+
+- mathis obadia ([@mathisobadia](https://github.com/mathisobadia))
+- Michael Machiah ([@MichaelDM](https://github.com/MichaelDM))
+
+---
+
 # v2.0.3 (Mon Mar 18 2024)
 
 #### ⚠️ Pushed to `main`
