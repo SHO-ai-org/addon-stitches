@@ -1,7 +1,6 @@
 import { useGlobals, useParameter } from "@storybook/manager-api";
 import {
   IconButton,
-  Icons,
   TooltipLinkList,
   WithTooltip,
 } from "@storybook/components";
@@ -14,6 +13,7 @@ import {
   ThemeSelectorItem,
   ThemesParameter,
 } from "./types";
+import { PaintBrushIcon } from "@storybook/icons";
 
 const iframeId = "storybook-preview-iframe";
 
@@ -158,7 +158,7 @@ export const ThemeSelector: FC = memo(() => {
           title="Change the theme of the preview"
           active={selectedTheme !== null}
         >
-          <Icons icon="paintbrush" />
+          <PaintBrushIcon />
         </IconButton>
       </WithTooltip>
     </Fragment>
